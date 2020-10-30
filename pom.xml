@@ -8,6 +8,7 @@
     <artifactId>sm</artifactId>
     <version>1.0</version>
 
+    <name>sm</name>
     <description>针对sm2和sm4两种加密算法的java实现</description>
     <url>https://github.com/firmboy/sm</url>
     <licenses>
@@ -57,9 +58,21 @@
                     </execution>
                 </executions>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-javadoc-plugin</artifactId>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <additionalJOption>-Xdoclint:none</additionalJOption>
+                        </configuration>
+                    </execution>
+                </executions>
 <!--                <executions>-->
 <!--                    <execution>-->
 <!--                        <id>attach-javadocs</id>-->
@@ -68,16 +81,13 @@
 <!--                        </goals>-->
 <!--                    </execution>-->
 <!--                </executions>-->
-<!--            </plugin>-->
+            </plugin>
             <!--  必须配置GPG插件用于使用以下配置对组件进行签名 -->
             <!-- GPG -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.6</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
                 <executions>
                     <execution>
                         <phase>verify</phase>
